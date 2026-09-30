@@ -1,0 +1,1005 @@
+/* ============================================================
+   POSYANDU - Enhanced UI v2 (Dark Mode Fix + Scroll Fix)
+   ============================================================ */
+
+/* ---- CSS Variables (Light Mode) ---- */
+:root {
+  --bg-body: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-navbar: linear-gradient(135deg, #0d6efd 0%, #0056d6 100%);
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #9ca3af;
+  --border-color: #e9ecef;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(13,110,253,0.18);
+  --input-bg: #ffffff;
+  --input-border: #dee2e6;
+  --table-stripe: rgba(0,0,0,0.03);
+  --table-hover: rgba(13,110,253,0.06);
+  --table-head-bg: rgba(13,110,253,0.08);
+  --accent: #0d6efd;
+  --accent-rgb: 13,110,253;
+  --success: #198754;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Dark Mode ---- */
+[data-theme="dark"] {
+  --bg-body: #0f1117;
+  --bg-card: #1a1d27;
+  --bg-navbar: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #2d3748;
+  --shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --shadow-hover: 0 8px 30px rgba(13,110,253,0.25);
+  --input-bg: #252836;
+  --input-border: #3d4558;
+  --table-stripe: rgba(255,255,255,0.03);
+  --table-hover: rgba(13,110,253,0.1);
+  --table-head-bg: rgba(13,110,253,0.15);
+}
+
+/* ============================================================
+   DARK MODE OVERRIDES — Fix Bootstrap hardcoded colors
+   ============================================================ */
+
+/* Global text fix */
+[data-theme="dark"] body,
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] td,
+[data-theme="dark"] th,
+[data-theme="dark"] label,
+[data-theme="dark"] small,
+[data-theme="dark"] .small {
+  color: var(--text-primary);
+}
+
+/* Headings */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Bootstrap table color overrides */
+[data-theme="dark"] .table {
+  --bs-table-color: var(--text-primary) !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-border-color: var(--border-color) !important;
+  --bs-table-striped-bg: var(--table-stripe) !important;
+  --bs-table-striped-color: var(--text-primary) !important;
+  --bs-table-hover-bg: var(--table-hover) !important;
+  --bs-table-hover-color: var(--text-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* table-primary / table-success header rows in dark mode */
+[data-theme="dark"] .table-primary,
+[data-theme="dark"] .table-primary > th,
+[data-theme="dark"] .table-primary > td,
+[data-theme="dark"] thead.table-primary tr th,
+[data-theme="dark"] .table > thead > tr > th {
+  background-color: var(--table-head-bg) !important;
+  color: #60a5fa !important;
+  border-color: var(--border-color) !important;
+  --bs-table-bg: var(--table-head-bg) !important;
+  --bs-table-color: #60a5fa !important;
+}
+
+[data-theme="dark"] .table-success,
+[data-theme="dark"] .table-success > th,
+[data-theme="dark"] .table-success > td,
+[data-theme="dark"] thead.table-success tr th {
+  background-color: rgba(25,135,84,0.18) !important;
+  color: #4ade80 !important;
+  border-color: var(--border-color) !important;
+  --bs-table-bg: rgba(25,135,84,0.18) !important;
+  --bs-table-color: #4ade80 !important;
+}
+
+[data-theme="dark"] .table > tbody > tr > td,
+[data-theme="dark"] .table > tbody > tr > th {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: var(--table-stripe) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .table-hover > tbody > tr:hover > * {
+  background-color: var(--table-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+/* text-muted in dark */
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .text-secondary {
+  color: var(--text-muted) !important;
+}
+
+/* Bootstrap card overrides */
+[data-theme="dark"] .card,
+[data-theme="dark"] .card-body,
+[data-theme="dark"] .card-header {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Form controls */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--input-border) !important;
+}
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .form-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* Navbar text */
+[data-theme="dark"] .navbar-text {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* Nav tabs */
+[data-theme="dark"] .nav-tabs .nav-link {
+  color: var(--text-secondary) !important;
+}
+[data-theme="dark"] .nav-tabs .nav-link.active {
+  color: #60a5fa !important;
+}
+
+/* Accordion */
+[data-theme="dark"] .accordion-button {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+  background-color: rgba(13,110,253,0.15) !important;
+  color: #60a5fa !important;
+}
+[data-theme="dark"] .accordion-button::after {
+  filter: invert(1) brightness(2);
+}
+[data-theme="dark"] .accordion-body,
+[data-theme="dark"] .accordion-item {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Alerts in dark */
+[data-theme="dark"] .alert-success {
+  background: rgba(25,135,84,0.15) !important;
+  color: #4ade80 !important;
+}
+[data-theme="dark"] .alert-danger {
+  background: rgba(220,53,69,0.15) !important;
+  color: #f87171 !important;
+}
+[data-theme="dark"] .alert-warning {
+  background: rgba(255,193,7,0.15) !important;
+  color: #fcd34d !important;
+}
+
+/* Bootstrap btn-close in dark */
+[data-theme="dark"] .btn-close {
+  filter: invert(1) brightness(2);
+}
+
+/* input-group border fix dark */
+[data-theme="dark"] .input-group .btn-outline-secondary {
+  border-color: var(--input-border) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* stat-card labels */
+[data-theme="dark"] .stat-label {
+  color: var(--text-muted) !important;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.page-enter        { animation: fadeSlideIn 0.5s ease both; }
+.page-enter-delay-1 { animation: fadeSlideIn 0.5s ease 0.08s both; }
+.page-enter-delay-2 { animation: fadeSlideIn 0.5s ease 0.16s both; }
+.page-enter-delay-3 { animation: fadeSlideIn 0.5s ease 0.24s both; }
+
+/* ============================================================
+   PAGE TRANSITION
+   ============================================================ */
+#page-transition {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+#page-transition.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  background: var(--bg-navbar) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: background var(--transition);
+}
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.navbar-brand i { animation: pulse 2s ease infinite; color: #ff6b9d; }
+
+.nav-link {
+  font-weight: 500;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: background 0.25s ease !important;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 50%;
+  width: 0; height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 70%; left: 15%; }
+.nav-link:hover { background: rgba(255,255,255,0.15) !important; }
+.nav-link.active { background: rgba(255,255,255,0.2) !important; font-weight: 600; }
+
+#darkModeToggle, #darkModeToggleMobile {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  border-radius: 50px;
+  padding: 5px 13px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#darkModeToggle:hover, #darkModeToggleMobile:hover {
+  background: rgba(255,255,255,0.28);
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+.container, .container-fluid {
+  padding-top: 1.25rem;
+  padding-bottom: 1.5rem;
+}
+
+/* ============================================================
+   CARDS — CRITICAL: no overflow:hidden so tables can scroll
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+  /* NO overflow:hidden here — would break table-responsive scroll */
+  transition: transform var(--transition), box-shadow var(--transition),
+              background var(--transition), border-color var(--transition);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+.card-header {
+  background: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+  border-radius: 12px 12px 0 0 !important;
+  color: var(--text-primary) !important;
+}
+.card-body { padding: 1.2rem; }
+
+/* Stat cards */
+.stat-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+.stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.stat-card .stat-icon { font-size: 2.2rem; margin-bottom: 0.4rem; }
+.stat-card .stat-number { font-size: 2rem; font-weight: 800; line-height: 1; }
+.stat-card .stat-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px; font-weight: 500; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.22s ease;
+}
+.btn:active { transform: scale(0.97) !important; }
+
+.btn-primary { background: linear-gradient(135deg,#0d6efd,#0056d6); border: none; }
+.btn-primary:hover { background: linear-gradient(135deg,#0b5ed7,#0047b8); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(13,110,253,0.4); }
+
+.btn-success { background: linear-gradient(135deg,#198754,#115e39); border: none; }
+.btn-success:hover { background: linear-gradient(135deg,#157347,#0d4d2e); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(25,135,84,0.4); }
+
+.btn-danger  { background: linear-gradient(135deg,#dc3545,#a71d2a); border: none; }
+.btn-danger:hover  { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(220,53,69,0.4); }
+
+.btn-secondary { background: linear-gradient(135deg,#6c757d,#495057); border: none; }
+.btn-secondary:hover { transform: translateY(-2px); }
+
+.btn-outline-primary { color: var(--accent); border-color: var(--accent); background: transparent; }
+.btn-outline-primary:hover { background: var(--accent); color: white; transform: translateY(-2px); }
+
+.btn-outline-secondary { color: var(--text-secondary); border-color: var(--border-color); background: transparent; }
+.btn-outline-secondary:hover { background: var(--text-secondary); color: white; transform: translateY(-2px); }
+[data-theme="dark"] .btn-outline-secondary { color: var(--text-secondary); border-color: var(--border-color); }
+
+.btn-outline-danger { color: var(--danger); border-color: var(--danger); background: transparent; }
+.btn-outline-danger:hover { background: var(--danger); color: white; transform: translateY(-2px); }
+
+.btn-outline-light:hover { background: rgba(255,255,255,0.2); }
+
+.btn-sm { padding: 5px 11px; font-size: 0.78rem; border-radius: 6px; }
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-control, .form-select {
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+.form-control:focus, .form-select:focus {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb),0.15);
+}
+.form-label {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ============================================================
+   TABLES — SCROLL FIX
+   ============================================================ */
+
+/* The wrapper that enables horizontal scroll */
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;        /* horizontal scroll on mobile */
+  -webkit-overflow-scrolling: touch; /* smooth iOS scroll */
+  border-radius: 8px;
+  /* NO overflow:hidden — that would block scrolling */
+}
+
+.table {
+  color: var(--text-primary);
+  margin-bottom: 0;
+  font-size: 0.88rem;
+  width: 100%;
+  min-width: 600px; /* force scroll before squishing */
+}
+
+/* Prevent Bootstrap from overriding cell backgrounds in dark mode */
+.table > :not(caption) > * > * {
+  padding: 0.7rem 0.85rem;
+  border-bottom-color: var(--border-color);
+  /* Don't set background here — let dark mode overrides handle it */
+}
+
+.table thead th {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Light mode table head colors */
+.table-primary { --bs-table-color: #0d6efd; --bs-table-bg: rgba(13,110,253,0.08); }
+.table-success  { --bs-table-color: #198754; --bs-table-bg: rgba(25,135,84,0.08); }
+
+/* card-body wrapping table — remove padding so table touches edges */
+.card-body.table-responsive {
+  padding: 0;
+  border-radius: 0 0 12px 12px;
+}
+/* but keep some padding when there's a search form above */
+.card-body.table-responsive form {
+  padding: 1rem 1rem 0;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge { padding: 5px 10px; font-weight: 600; font-size: 0.73rem; border-radius: 20px; }
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+.alert {
+  border-radius: 10px;
+  border: none;
+  padding: 12px 18px;
+  animation: fadeSlideIn 0.4s ease;
+  font-weight: 500;
+}
+.alert-success { background: rgba(25,135,84,0.12); color: #198754; border-left: 4px solid #198754; }
+.alert-danger  { background: rgba(220,53,69,0.12);  color: #dc3545; border-left: 4px solid #dc3545; }
+.alert-warning { background: rgba(255,193,7,0.12);  color: #856404; border-left: 4px solid #ffc107; }
+
+/* ============================================================
+   ACCORDION
+   ============================================================ */
+.accordion-item {
+  border: 1px solid var(--border-color);
+  border-radius: 8px !important;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.accordion-button {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-radius: 8px !important;
+  transition: all 0.25s ease;
+}
+.accordion-button:not(.collapsed) {
+  background: rgba(var(--accent-rgb),0.1);
+  color: var(--accent);
+  box-shadow: none;
+}
+.accordion-body { background: var(--bg-card); color: var(--text-secondary); }
+
+/* ============================================================
+   TABS
+   ============================================================ */
+.nav-tabs { border-bottom: 2px solid var(--border-color); }
+.nav-tabs .nav-link {
+  color: var(--text-secondary);
+  font-weight: 600;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 10px 18px;
+  transition: all 0.25s ease;
+}
+.nav-tabs .nav-link:hover { color: var(--accent); background: rgba(var(--accent-rgb),0.05); }
+.nav-tabs .nav-link.active { color: var(--accent); background: transparent; border-bottom: 3px solid var(--accent); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.83rem;
+  padding: 1.25rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+  transition: all var(--transition);
+}
+
+/* ============================================================
+   LOGIN PAGE
+   ============================================================ */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+[data-theme="dark"] .login-page {
+  background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+}
+.login-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 2.25rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  animation: fadeSlideIn 0.5s ease;
+}
+.login-logo {
+  width: 68px; height: 68px;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.9rem;
+  color: white;
+  box-shadow: 0 8px 20px rgba(13,110,253,0.4);
+  animation: pulse 3s ease infinite;
+}
+
+/* ============================================================
+   SCROLL TO TOP
+   ============================================================ */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 14px rgba(13,110,253,0.4);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  display: flex; align-items: center; justify-content: center;
+}
+#scrollTopBtn.visible { opacity: 1; transform: translateY(0); }
+#scrollTopBtn:hover { transform: translateY(-3px) scale(1.08); }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+h3, h4, h5, h6 { font-weight: 700; color: var(--text-primary); }
+.text-primary { color: var(--accent) !important; }
+hr { border-color: var(--border-color); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+  }
+  #darkModeToggle { display: none !important; }
+}
+
+@media (max-width: 767.98px) {
+  .container, .container-fluid { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .card { margin-bottom: 0.75rem; }
+  .card:hover { transform: none; } /* disable hover lift on touch */
+  .stat-card { padding: 1rem 0.75rem; }
+  .stat-card .stat-number { font-size: 1.7rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+  .table { font-size: 0.82rem; }
+  .table > :not(caption) > * > * { padding: 0.55rem 0.7rem; }
+  .btn { padding: 7px 13px; }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand { font-size: 1rem; }
+  .login-card { padding: 1.5rem; border-radius: 14px; }
+}
+
+/* ============================================================
+   PATCH v2 — Dark mode teks & scroll tabel mobile
+   ============================================================ */
+
+/* ---- Fix teks gelap di dark mode (Bootstrap override) ---- */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] ul,
+[data-theme="dark"] ol,
+[data-theme="dark"] span:not(.badge),
+[data-theme="dark"] em,
+[data-theme="dark"] strong {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .card p,
+[data-theme="dark"] .card li,
+[data-theme="dark"] .card ul,
+[data-theme="dark"] .card em {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] small {
+  color: var(--text-muted) !important;
+}
+
+/* Bootstrap table-light override untuk dark mode */
+[data-theme="dark"] .table-light,
+[data-theme="dark"] .table-light > th,
+[data-theme="dark"] .table-light > td,
+[data-theme="dark"] thead.table-light th {
+  background-color: rgba(255,255,255,0.06) !important;
+  color: var(--accent) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Bootstrap table-primary / table-success override */
+[data-theme="dark"] thead.table-primary th,
+[data-theme="dark"] .table-primary > th {
+  background-color: rgba(13,110,253,0.15) !important;
+  color: #6ea8fe !important;
+  border-color: var(--border-color) !important;
+}
+[data-theme="dark"] thead.table-success th,
+[data-theme="dark"] .table-success > th {
+  background-color: rgba(25,135,84,0.15) !important;
+  color: #75b798 !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Fix warna teks di dalam tabel dark mode */
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+  color: var(--text-primary);
+}
+
+/* accordion dark mode body text */
+[data-theme="dark"] .accordion-body,
+[data-theme="dark"] .accordion-button {
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+}
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+  color: var(--accent);
+  background-color: rgba(13,110,253,0.1);
+}
+
+/* ---- Fix scroll tabel di mobile ---- */
+.table-responsive {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Pastikan card body tidak memotong overflow */
+.card-body {
+  overflow: visible;
+}
+.card-body > .table-responsive {
+  margin: -0.25rem;
+}
+
+/* Tabel di dalam card tidak min-width terlalu kecil */
+.table-responsive > table {
+  min-width: 600px;
+}
+
+/* Indikator scroll di mobile */
+@media (max-width: 767.98px) {
+  .table-responsive {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+  .table-responsive::after {
+    content: '← Geser untuk melihat lebih →';
+    display: block;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 4px 0 2px;
+    background: var(--bg-card);
+  }
+  /* Sembunyikan hint kalau sudah di-scroll */
+  .table-responsive.scrolled::after {
+    display: none;
+  }
+}
+
+/* ---- Fix tab content dark mode ---- */
+[data-theme="dark"] .tab-content {
+  background: transparent;
+}
+[data-theme="dark"] .nav-tabs {
+  border-color: var(--border-color);
+}
+[data-theme="dark"] .nav-tabs .nav-link {
+  color: var(--text-secondary);
+}
+[data-theme="dark"] .nav-tabs .nav-link.active {
+  color: var(--accent);
+  background: transparent;
+}
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+  color: var(--accent);
+  background: rgba(13,110,253,0.08);
+}
+
+/* Custom thead yang support dark mode */
+.posyandu-thead-primary th {
+  background-color: rgba(13,110,253,0.1) !important;
+  color: #0d6efd !important;
+  border-color: rgba(13,110,253,0.2) !important;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.posyandu-thead-success th {
+  background-color: rgba(25,135,84,0.1) !important;
+  color: #198754 !important;
+  border-color: rgba(25,135,84,0.2) !important;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+[data-theme="dark"] .posyandu-thead-primary th {
+  background-color: rgba(13,110,253,0.18) !important;
+  color: #6ea8fe !important;
+  border-color: rgba(13,110,253,0.3) !important;
+}
+[data-theme="dark"] .posyandu-thead-success th {
+  background-color: rgba(25,135,84,0.18) !important;
+  color: #75b798 !important;
+  border-color: rgba(25,135,84,0.3) !important;
+}
+
+/* ============================================================
+   PATCH v3 — Judul besar terlihat jelas di semua mode
+   ============================================================ */
+
+/* h2, h3 pakai CSS variable agar muncul di dark mode */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Khusus judul halaman dengan ikon */
+.page-title, h2.mb-1, h3.mb-4, h3.mb-3, h3.mb-2 {
+  color: var(--text-primary) !important;
+}
+
+/* text-primary tetap biru (accent), bukan ikut var(--text-primary) */
+.text-primary { color: var(--accent) !important; }
+.text-success { color: var(--success) !important; }
+.text-warning { color: var(--warning) !important; }
+.text-danger  { color: var(--danger) !important; }
+
+/* Dark mode: pastikan span di dalam h2/h3 juga terlihat */
+[data-theme="dark"] h2 .text-primary,
+[data-theme="dark"] h3 .text-primary {
+  color: #6ea8fe !important;
+}
+
+/* Dark mode: icon di dalam judul */
+[data-theme="dark"] h3 i,
+[data-theme="dark"] h2 i {
+  opacity: 0.9;
+}
+
+/* Dark mode: warna judul lebih cerah */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #e2e8f0 !important;
+}
+
+/* Jaga span text-primary di dalam heading dark mode */
+[data-theme="dark"] span.text-primary {
+  color: #6ea8fe !important;
+}
+
+/* ---- Ibu Hamil custom colors ---- */
+.posyandu-thead-primary[style*="dc3545"] th {
+  background-color: rgba(220,53,69,0.1) !important;
+  color: #dc3545 !important;
+  border-color: rgba(220,53,69,0.2) !important;
+}
+[data-theme="dark"] .posyandu-thead-primary[style*="dc3545"] th {
+  background-color: rgba(220,53,69,0.18) !important;
+  color: #f5a0a8 !important;
+}
+
+/* Modal overlay scrollable */
+[id^=modal] { align-items: flex-start; }
+[id^=modal] > .card { margin: auto; }
+
+/* ============================================================
+   PATCH v5 — Modal scroll fix + form responsif
+   ============================================================ */
+
+/* Modal overlay: scrollable, tidak mentok */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.55);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-box {
+  background: var(--bg-card);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 820px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: fadeSlideIn 0.3s ease;
+}
+.modal-header-red {
+  background: linear-gradient(135deg,#dc3545,#a71d2a);
+  color: white;
+  padding: 1rem 1.25rem;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header-blue {
+  background: linear-gradient(135deg,#0d6efd,#0056d6);
+  color: white;
+  padding: 1rem 1.25rem;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header-red h5,
+.modal-header-blue h5 { margin: 0; color: white !important; }
+.modal-close-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.modal-close-btn:hover { background: rgba(255,255,255,0.35); }
+.modal-body { padding: 1.25rem; }
+
+@media (max-width: 575px) {
+  .modal-overlay { padding: 8px; }
+  .modal-box { border-radius: 12px; }
+}
+
+/* ============================================================
+   PATCH v5 — Modal scroll fix & konfirmasi hapus
+   ============================================================ */
+
+/* Modal overlay — full screen, scrollable */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px 12px 40px;
+}
+
+/* Modal box — konten utama */
+.modal-box {
+    background: var(--bg-card);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 820px;
+    margin: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    max-height: none; /* Tidak ada batasan tinggi — ikut konten */
+}
+
+.modal-header-custom {
+    padding: 1rem 1.25rem;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.modal-close-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.modal-close-btn:hover { background: rgba(255,255,255,0.35); }
+
+/* Body modal — padding normal, tidak ada overflow hidden */
+.modal-body-custom {
+    padding: 1.25rem;
+    overflow: visible;
+}
+
+@media (max-width: 575.98px) {
+    .modal-overlay { padding: 10px 6px 30px; }
+    .modal-box { border-radius: 12px; }
+}
